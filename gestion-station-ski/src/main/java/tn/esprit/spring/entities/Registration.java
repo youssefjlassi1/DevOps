@@ -28,6 +28,7 @@ public class Registration implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Long numRegistration;
+	//commit
 	int numWeek;
 
 	@JsonIgnore
