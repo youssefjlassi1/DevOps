@@ -37,4 +37,29 @@ public class Registration implements Serializable {
     @JsonIgnore
     @ManyToOne
     Course course;
+    // Dans Registration.java
+public Skier getSkier() {
+    return skier;
+}
+
+public void setSkier(Skier skier) {
+    this.skier = skier;
+}
+
+public Course getCourse() {
+    return course;
+}
+
+public void setCourse(Course course) {
+    this.course = course;
+}
+
+public int getNumWeek() {
+    return numWeek;
+}
+
+public void setNumWeek(int numWeek) {
+    this.numWeek = numWeek;
+}
+
 }
