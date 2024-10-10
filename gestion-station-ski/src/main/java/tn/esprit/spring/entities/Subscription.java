@@ -3,7 +3,6 @@ package tn.esprit.spring.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 import javax.persistence.*;
-
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,8 +29,4 @@ public class Subscription implements Serializable {
 
     @Enumerated(EnumType.STRING)
     TypeSubscription typeSub;
-}
-
-enum TypeSubscription {
-    ANNUAL, MONTHLY, SEMESTRIEL
 }
