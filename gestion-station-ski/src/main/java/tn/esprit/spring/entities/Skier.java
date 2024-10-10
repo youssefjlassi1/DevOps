@@ -43,4 +43,29 @@ public class Skier implements Serializable {
 
     @OneToMany(mappedBy = "skier")
     Set<Registration> registrations;
+    // Dans Skier.java
+public Subscription getSubscription() {
+    return subscription;
+}
+
+public void setSubscription(Subscription subscription) {
+    this.subscription = subscription;
+}
+
+public Set<Registration> getRegistrations() {
+    return registrations;
+}
+
+public void setRegistrations(Set<Registration> registrations) {
+    this.registrations = registrations;
+}
+
+public Set<Piste> getPistes() {
+    return pistes;
+}
+
+public void setPistes(Set<Piste> pistes) {
+    this.pistes = pistes;
+}
+
 }
