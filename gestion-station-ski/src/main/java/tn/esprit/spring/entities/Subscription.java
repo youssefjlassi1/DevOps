@@ -16,12 +16,12 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@FieldDefaults(level=AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 public class Subscription implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long numSub;
     LocalDate startDate;
     LocalDate endDate;
@@ -29,11 +29,12 @@ public class Subscription implements Serializable {
 
     @Enumerated(EnumType.STRING)
     TypeSubscription typeSub;
-}
-public LocalDate getStartDate() {
-    return startDate;
-}
 
-public void setStartDate(LocalDate startDate) {
-    this.startDate = startDate;
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
 }
