@@ -30,11 +30,28 @@ public class Subscription implements Serializable {
     @Enumerated(EnumType.STRING)
     TypeSubscription typeSub;
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
+  public LocalDate getStartDate() {
+    return this.startDate;
+}
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
+public void setStartDate(LocalDate startDate) {
+    this.startDate = startDate;
+}
+
+public LocalDate getEndDate() {
+    return this.endDate;
+}
+
+public void setEndDate(LocalDate endDate) {
+    this.endDate = endDate;
+}
+
+public TypeSubscription getTypeSub() {
+    return this.typeSub;
+}
+
+public void setTypeSub(TypeSubscription typeSub) {
+    this.typeSub = typeSub;
+}
+
 }
