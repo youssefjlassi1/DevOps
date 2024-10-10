@@ -1,6 +1,7 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-
 @Getter
 @Setter
 @ToString
@@ -25,41 +25,15 @@ import lombok.experimental.FieldDefaults;
 @Entity
 public class Registration implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    Long numRegistration;
-    int numWeek;
+      @Id
+      @GeneratedValue(strategy=GenerationType.IDENTITY)
+      Long numRegistration;
+      int numWeek;
 
-    @JsonIgnore
-    @ManyToOne
+      @JsonIgnore
+      @ManyToOne
     Skier skier;
-
-    @JsonIgnore
-    @ManyToOne
-    Course course;
-    // Dans Registration.java
-public Skier getSkier() {
-    return skier;
-}
-
-public void setSkier(Skier skier) {
-    this.skier = skier;
-}
-
-public Course getCourse() {
-    return course;
-}
-
-public void setCourse(Course course) {
-    this.course = course;
-}
-
-public int getNumWeek() {
-    return numWeek;
-}
-
-public void setNumWeek(int numWeek) {
-    this.numWeek = numWeek;
-}
-
+      @JsonIgnore
+      @ManyToOne
+      Course course;
 }
