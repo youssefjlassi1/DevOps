@@ -13,11 +13,16 @@ import tn.esprit.spring.repositories.ISubscriptionRepository;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @Slf4j
 @AllArgsConstructor
 @Service
 public class SubscriptionServicesImpl implements ISubscriptionServices{
+    private static final Logger log = LoggerFactory.getLogger(SubscriptionServicesImpl.class);
+}
 
     private ISubscriptionRepository subscriptionRepository;
 
