@@ -27,7 +27,6 @@ public class Chambre {
     TypeChambre typeC;
 
 
-
     @OneToMany
     Set<Reservation> reservations;
 

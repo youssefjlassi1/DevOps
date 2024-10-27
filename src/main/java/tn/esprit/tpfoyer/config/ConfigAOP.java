@@ -28,15 +28,14 @@ public class ConfigAOP {
     }
 
     @Around("execution(* tn.esprit.tpfoyer.service.*.*(..))")
-    public Object profile(ProceedingJoinPoint pjp) throws Throwable
-    {
-        long start= System.currentTimeMillis();
+    public Object profile(ProceedingJoinPoint pjp) throws Throwable {
+        long start = System.currentTimeMillis();
 
-        Object obj= pjp.proceed();
+        Object obj = pjp.proceed();
 
-        long elapsedTime= System.currentTimeMillis() -start;
+        long elapsedTime = System.currentTimeMillis() - start;
 
-        log.info("Methodexecutiontime: " + elapsedTime+ " milliseconds.");
+        log.info("Methodexecutiontime: " + elapsedTime + " milliseconds.");
         return obj;
     }
 

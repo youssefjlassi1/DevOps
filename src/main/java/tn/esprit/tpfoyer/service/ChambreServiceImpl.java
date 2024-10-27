@@ -26,13 +26,11 @@ public class ChambreServiceImpl implements IChambreService {
     }
 
     public Chambre retrieveChambre(Long chambreId) {
-        Chambre c = chambreRepository.findById(chambreId).get();
-        return c;
+        return chambreRepository.findById(chambreId).get();
     }
 
     public Chambre addChambre(Chambre c) {
-        Chambre chambre = chambreRepository.save(c);
-        return chambre;
+        return chambreRepository.save(c);
     }
 
     public Chambre modifyChambre(Chambre c) {
@@ -45,39 +43,13 @@ public class ChambreServiceImpl implements IChambreService {
     }
 
 
-
-
-
-
-
-    public List<Chambre> recupererChambresSelonTyp(TypeChambre tc)
-    {
+    public List<Chambre> recupererChambresSelonTyp(TypeChambre tc) {
         return chambreRepository.findAllByTypeC(tc);
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public Chambre trouverchambreSelonEtudiant(long cin) {
-       //
+        //
 
         return chambreRepository.trouverChselonEt(cin);
     }

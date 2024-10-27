@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 @Slf4j  // Simple Loggining Façade For Java
-public class BlocServiceImpl  implements IBlocService {
+public class BlocServiceImpl implements IBlocService {
 
 
     BlocRepository blocRepository;
@@ -26,7 +26,7 @@ public class BlocServiceImpl  implements IBlocService {
 
         List<Bloc> listB = blocRepository.findAll();
         log.info("taille totale : " + listB.size());
-        for (Bloc b: listB) {
+        for (Bloc b : listB) {
             log.info("Bloc : " + b);
         }
 
@@ -40,8 +40,8 @@ public class BlocServiceImpl  implements IBlocService {
         List<Bloc> listB = blocRepository.findAll();
         List<Bloc> listBselonC = new ArrayList<>();
 
-        for (Bloc b: listB) {
-            if (b.getCapaciteBloc()>=c)
+        for (Bloc b : listB) {
+            if (b.getCapaciteBloc() >= c)
                 listBselonC.add(b);
         }
 
@@ -69,13 +69,12 @@ public class BlocServiceImpl  implements IBlocService {
     }
 
 
-
     public List<Bloc> trouverBlocsSansFoyer() {
         return blocRepository.findAllByFoyerIsNull();
     }
 
     public List<Bloc> trouverBlocsParNomEtCap(String nb, long c) {
-        return blocRepository.findAllByNomBlocAndCapaciteBloc(nb,  c);
+        return blocRepository.findAllByNomBlocAndCapaciteBloc(nb, c);
     }
 
 }

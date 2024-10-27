@@ -9,8 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface ReservationRepository extends JpaRepository<Reservation, String>
-{
+public interface ReservationRepository extends JpaRepository<Reservation, String> {
 
     /* No need to code CRUD here. Its is already in the
     interfaces provided by the framework Spring Data JPA :
@@ -21,7 +20,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, String
 
     /* Keywords : */
 
-    List<Reservation> findAllByAnneeUniversitaireBeforeAndEstValide(Date d, boolean b );
+    List<Reservation> findAllByAnneeUniversitaireBeforeAndEstValide(Date d, boolean b);
 
 }
 

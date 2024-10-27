@@ -1,6 +1,8 @@
 package tn.esprit.tpfoyer.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -25,16 +27,8 @@ public class Reservation {
     boolean estValide;
 
 
-
-
-
-
-
-
-
-
-
     @ManyToMany
+    @ToString.Exclude
     Set<Etudiant> etudiants;
 
 

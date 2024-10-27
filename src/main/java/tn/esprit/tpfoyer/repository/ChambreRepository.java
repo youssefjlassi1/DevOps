@@ -13,35 +13,7 @@ import java.util.List;
 public interface ChambreRepository extends JpaRepository<Chambre, Long> {
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Trouver toutes les chambres qui sont de typ SIMPlE :
-
 
 
     List<Chambre> findAllByTypeC(TypeChambre tc);
@@ -57,13 +29,7 @@ public interface ChambreRepository extends JpaRepository<Chambre, Long> {
      */
 
 
-
-
-
     Chambre findChambreByNumeroChambre(Long num);
-
-
-
 
 
     // Recperer la chambre selon le CIN de l'étudiant qui l'occupe :
@@ -72,11 +38,6 @@ public interface ChambreRepository extends JpaRepository<Chambre, Long> {
             "INNER JOIN r.etudiants e " +
             "WHERE e.cinEtudiant=:cin ")
     Chambre trouverChselonEt(long cin);
-
-
-
-
-
 
 
 }
