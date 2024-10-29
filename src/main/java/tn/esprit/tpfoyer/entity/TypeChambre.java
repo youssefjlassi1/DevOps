@@ -1,5 +1,5 @@
 package tn.esprit.tpfoyer.entity;
 
 public enum TypeChambre {
-    SIMPLE, DOUBLE, TRIPLE ,s4
+    SIMPLE, DOUBLE, TRIPLE ,S4
 }
