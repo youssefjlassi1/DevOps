@@ -25,7 +25,7 @@ public class BlocRestController {
     @Operation(description = "WS de récuperation de tous les Blocs ")
     public List<Bloc> getBlocs() {
         return blocService.retrieveAllBlocs();
-       
+
     }
 
 
