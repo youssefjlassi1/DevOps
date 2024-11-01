@@ -1,11 +1,10 @@
-version: '3.8'
 services:
   mysql-db:
     image: mysql:5.7
     restart: unless-stopped
     container_name: mysql-container
     environment:
-      MYSQL_ROOT_PASSWORD: root_password  # Remplacez par votre mot de passe réel
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_DATABASE: db
     ports:
       - "3306:3306"
@@ -18,12 +17,14 @@ services:
     image: khlifi14/tp-foyer-5.0.0
     restart: on-failure
     ports:
-      - "8089:8089"
+      - "8083:8083"
     environment:
       SPRING_APPLICATION_JSON: '{
                "spring.datasource.url": "jdbc:mysql://mysql-db:3306/db?createDatabaseIfNotExist=true",
                "spring.datasource.username": "root",
-               "spring.datasource.password": ""
+               "spring.datasource.password": "",
+               "spring.jpa.hibernate.ddl-auto" : "update",
+               "spring.jpa.database-platform":"org.hibernate.dialect.MySQLDialect"
              }'
     volumes:
       - .m2:/root/.m2
