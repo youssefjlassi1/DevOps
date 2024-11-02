@@ -95,4 +95,17 @@ pipeline {
  
 
     }
+    post {
+        always {
+            emailext(
+                to: 'mohamedazyz.belaidi@esprit.tn',
+                subject: "Build #${env.BUILD_NUMBER} - ${currentBuild.currentResult}",
+                body: "Le build a été ${currentBuild.currentResult}. Détails du build : ${env.BUILD_URL}",
+                attachLog: true
+            )
+        }
+    }
+
+
+
 }
