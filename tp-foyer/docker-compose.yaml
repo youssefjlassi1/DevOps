@@ -15,7 +15,7 @@ services:
   spring-app:
     depends_on:
       - mysql-db
-    image: bochraallagui/tp-foyer-devops:5.0.1
+    image: bochraallagui/tp-foyer-devops:5.0.0
     restart: on-failure
     ports:
       - "8089:8089"
