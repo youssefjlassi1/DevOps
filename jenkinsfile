@@ -1,0 +1,71 @@
+pipeline {
+    agent any
+    
+    environment {
+        SONARQUBE_URL = 'http://192.168.204.129:9000' // Remplacez par l'adresse de votre serveur SonarQube
+        SONARQUBE_TOKEN = credentials('SONARQUBE_TOKEN') // Assurez-vous que l'ID d'identification est correct
+    }
+
+    stages {
+        stage('Clone') {
+            steps {
+                script {
+                    git branch: 'mohamedazyzbelaidi', credentialsId: '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', url: 'https://github.com/youssefjlassi1/DevOps.git'
+                }
+            }
+        }
+
+        stage('Clean') {
+            steps {
+                script {
+                    dir('tp-foyer') {
+                        sh 'mvn clean install -DskipTests'
+                    }
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    dir('tp-foyer') {
+                        sh 'mvn compile'
+                    }
+                }
+            }
+        }
+        
+        
+        //stage('SonarQube Analysis') {
+          //  steps {
+            //    script {
+              //      dir('tp-foyer') {
+                //        sh 'mvn sonar:sonar -Dsonar.projectKey=tp-foyer -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_TOKEN'
+                  //  }
+    //            }
+      //      }
+    //    }
+        
+        stage('Nexus') {
+            steps {
+                dir('tp-foyer') {  
+                    nexusArtifactUploader artifacts: [
+                        [
+                            artifactId: 'tp-foyer', 
+                            classifier: '',
+                            file: 'target/tp-foyer-5.0.0.jar', 
+                            type: 'jar'
+                        ]
+                    ],
+                    credentialsId: 'nexus-cred', 
+                    groupId: 'tn.esprit',
+                    nexusUrl: '192.168.204.129:8081',  // Corrigé sans double "http://"
+                    nexusVersion: 'nexus3',                    // Assurez-vous que c'est bien 'nexus3' pour Nexus 3
+                    protocol: 'http', 
+                    repository: 'tp-foyer',  
+                    version: '5.0.0'
+                }
+            }
+        }
+    }
+}
