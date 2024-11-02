@@ -46,26 +46,33 @@ pipeline {
       //      }
     //    }
         
-        stage('Nexus') {
-            steps {
-                dir('tp-foyer') {  
-                    nexusArtifactUploader artifacts: [
-                        [
-                            artifactId: 'tp-foyer', 
-                            classifier: '',
-                            file: 'target/tp-foyer-5.0.0.jar', 
-                            type: 'jar'
-                        ]
-                    ],
-                    credentialsId: 'nexus-cred', 
-                    groupId: 'tn.esprit',
-                    nexusUrl: '192.168.204.129:8081',  // Corrigé sans double "http://"
-                    nexusVersion: 'nexus3',                    // Assurez-vous que c'est bien 'nexus3' pour Nexus 3
-                    protocol: 'http', 
-                    repository: 'tp-foyer',  
-                    version: '5.0.0'
-                }
-            }
+      //      stage('Nexus') {
+            //    steps {
+              //      dir('tp-foyer') {  
+              //          nexusArtifactUploader artifacts: [
+               //             [
+               //                 artifactId: 'tp-foyer', 
+                     //           classifier: '',
+               //                 file: 'target/tp-foyer-5.0.0.jar', 
+                     //           type: 'jar'
+            //                ]
+                 //       ],
+                   //     credentialsId: 'nexus-cred', 
+                   //     groupId: 'tn.esprit',
+                   //     nexusUrl: '192.168.204.129:8081',  // Corrigé sans double "http://"
+                  //      nexusVersion: 'nexus3',                    // Assurez-vous que c'est bien 'nexus3' pour Nexus 3
+                    //    protocol: 'http', 
+                   //     repository: 'tp-foyer',  
+                    //    version: '5.0.0'
+              //      }
+           //     }
+       //     }
+    //    }
+
+        stage('build backend'){
+                steps{
+                    sh 'cd tp-foyer && docker build -t tp-foyer'
+
+                }            
         }
-    }
 }
