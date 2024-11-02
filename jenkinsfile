@@ -4,6 +4,7 @@ pipeline {
     environment {
         SONARQUBE_URL = 'http://192.168.204.129:9000' // Remplacez par l'adresse de votre serveur SonarQube
         SONARQUBE_TOKEN = credentials('SONARQUBE_TOKEN') // Assurez-vous que l'ID d'identification est correct
+        DOCKER_HUB_CREDENTIALS = 'dockerhub-token'  
     }
 
     stages {
@@ -71,8 +72,21 @@ pipeline {
 
         stage('build backend'){
                 steps{
-                    sh 'cd tp-foyer && docker build -t tp-foyer'
-
+                    sh 'cd tp-foyer && docker build -t adminaziz/tp-foyer-5.0.0 . '
                 }            
         }
+
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: dockerhub-token, url: 'https://index.docker.io/v1/') {
+                        sh 'docker push adminaziz/tp-foyer-5.0.0'
+                    }
+                }
+            }
+        }
+ 
+
+    }
+
 }
