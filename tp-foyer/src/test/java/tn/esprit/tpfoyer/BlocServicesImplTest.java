@@ -8,10 +8,7 @@ import tn.esprit.tpfoyer.entity.Bloc;
 import tn.esprit.tpfoyer.repository.BlocRepository;
 import tn.esprit.tpfoyer.service.BlocServiceImpl;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -86,9 +83,12 @@ class BlocServiceImplTest {
 
         when(blocRepository.findById(blocId)).thenReturn(Optional.empty());
 
-        Bloc result = blocService.retrieveBloc(blocId);
+        NoSuchElementException thrown = assertThrows(NoSuchElementException.class, () -> {
+            blocService.retrieveBloc(blocId);
+        });
 
-        assertNull(result);
+        assertEquals("Bloc not found with id: " + blocId, thrown.getMessage());
         verify(blocRepository, times(1)).findById(blocId);
     }
+
 }
