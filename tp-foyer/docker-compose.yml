@@ -16,9 +16,9 @@ services:
     depends_on:
       - mysql-db
 
-    build: ./
+      # build: ./
 
-   # image: yousse201/tp-foyer-devops:5.0.0
+    image: yousse201/tp-foyer-devops:5.0.0
     restart: on-failure
     ports:
       - "8089:8089"
