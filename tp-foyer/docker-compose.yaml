@@ -30,5 +30,18 @@ services:
     stdin_open: true
     tty: true
 
+  mysql-exporter:
+    image: prom/mysqld-exporter
+    restart: unless-stopped
+    container_name: mysql-exporter
+    environment:
+      DATA_SOURCE_NAME: "root:mysql@tcp(mysql-db:3306)/"  # Connexion à MySQL
+    ports:
+      - "9104:9104"
+    volumes:
+      - ~/.my.cnf:/root/.my.cnf  # Assurez-vous que le fichier .my.cnf est correct
+    depends_on:
+      - mysql-db
+
 volumes:
   db:
