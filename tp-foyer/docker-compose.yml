@@ -35,13 +35,12 @@ services:
     restart: unless-stopped
     container_name: mysql-exporter
     environment:
-      DATA_SOURCE_NAME: "exporter:bochra@tcp(mysql-db:3306)/"  # Connexion à MySQL avec l'utilisateur exporter
+      DATA_SOURCE_NAME: "exporter:bochra@tcp(mysql-db:3306)/"
     ports:
       - "9104:9104"
     volumes:
-      - ./.my.cnf:/etc/my.cnf  # Montre le fichier .my.cnf correctement
+       - /home/vagrant/.my.cnf:/etc/my.cnf
+
     depends_on:
       - mysql-db
 
-volumes:
-  db:
