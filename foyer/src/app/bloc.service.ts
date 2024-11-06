@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class BlocService {
 
-  private baseUrl = 'http://192.168.33.11:8089/tpfoyer/bloc';
+  private baseUrl = 'http://192.168.33.10:8089/tpfoyer/bloc';
 
   constructor(private http: HttpClient) { }
 
