@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   mysql-db:
     image: mysql:5.7
@@ -37,16 +38,25 @@ services:
       - devops_default
 
   mysql-exporter-test:
-    image: prom/mysqld-exporter:v0.12.1  # Specify only v0.12.1 here
+    image: prom/mysqld-exporter:v0.12.1
     restart: unless-stopped
     container_name: mysql-exporter-test
     environment:
       DATA_SOURCE_NAME: "exporter:bochra@tcp(mysql-db:3306)/"
-
     ports:
       - "9105:9104"
     networks:
       - devops_default
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - devops_default**
 
 volumes:
   db:
