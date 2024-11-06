@@ -43,7 +43,7 @@ services:
     environment:
       DATA_SOURCE_NAME: "exporter:bochra@tcp(mysql-container:3306)/"
     ports:
-      - "9104:9104"
+      - "9105:9104"
     networks:
       - devops_default
 
