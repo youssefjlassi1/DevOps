@@ -37,7 +37,7 @@ services:
       - devops_default
 
   mysql-exporter:
-    image: prom/mysqld-exporter:v0.12.1
+    image: prom/mysqld-exporter:v0.15.1
     restart: unless-stopped
     container_name: mysql-exporter
     environment:
@@ -48,6 +48,7 @@ services:
       - mysql-db
     networks:
       - devops_default
+
 
 volumes:
   db:
