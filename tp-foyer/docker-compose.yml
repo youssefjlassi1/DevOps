@@ -15,7 +15,7 @@ services:
     volumes:
       - db:/var/lib/mysql
     networks:
-      - devops_default
+      - devops_network
 
   spring-app:
     depends_on:
@@ -35,18 +35,18 @@ services:
     stdin_open: true
     tty: true
     networks:
-      - devops_default
+      - devops_network
 
-  mysql-exporter-test:
+  mysql-exporter:
     image: prom/mysqld-exporter:v0.12.1
     restart: unless-stopped
-    container_name: mysql-exporter-test
+    container_name: mysql-exporter
     environment:
       DATA_SOURCE_NAME: "exporter:bochra@tcp(mysql-db:3306)/"
     ports:
       - "9105:9104"
     networks:
-      - devops_default
+      - devops_network
 
   prometheus:
     image: prom/prometheus
@@ -56,11 +56,11 @@ services:
     ports:
       - "9090:9090"
     networks:
-      - devops_default**
+      - devops_network
 
 volumes:
   db:
 
 networks:
-  devops_default:
+  devops_network:
     driver: bridge
