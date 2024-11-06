@@ -125,7 +125,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running Docker Compose...'
-                    sh "docker compose -f ${MODULE_PATH}/docker-compose.yml up -d"
+                    sh "docker compose -f ${MODULE_PATH}/docker-compose.yml up --build -d"
                 }
             }
         }
