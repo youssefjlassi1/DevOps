@@ -16,10 +16,10 @@ public class TpCinfig { private static final String GET = "GET";
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/*")
+                registry.addMapping("/**")  // Apply CORS to all endpoints
                         .allowedMethods(GET, POST, PUT, DELETE)
-                        .allowedHeaders("")
-                        .allowedOriginPatterns("*")
+                        .allowedHeaders("*")  // Allow all headers
+                        .allowedOriginPatterns("*")  // Allow all origins
                         .allowCredentials(true);
             }
         };
