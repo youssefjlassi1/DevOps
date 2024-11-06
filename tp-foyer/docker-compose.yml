@@ -11,6 +11,16 @@ services:
       - "3306:3306"
     volumes:
       - db:/var/lib/mysql
+  app-angular:
+    depends_on:
+      - spring-app
+
+
+    build: ./../foyer
+
+    ports:
+      - "4200:4200"
+    restart: on-failure
 
   spring-app:
     depends_on:
