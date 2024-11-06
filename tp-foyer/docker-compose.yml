@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   mysql-db:
     image: mysql:5.7
@@ -41,14 +42,11 @@ services:
     restart: unless-stopped
     container_name: mysql-exporter
     environment:
-      DATA_SOURCE_NAME: "exporter:bochra@tcp(mysql-db:3306)/"
+      DATA_SOURCE_NAME: "exporter:bochra@tcp(mysql-container:3306)/"
     ports:
       - "9104:9104"
-    depends_on:
-      - mysql-db
     networks:
       - devops_default
-
 
 volumes:
   db:
