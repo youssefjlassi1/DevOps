@@ -1,15 +1,14 @@
 version: '3.8'
-
 services:
   mysql-db:
     image: mysql:5.7
     restart: unless-stopped
     container_name: mysql-container
     environment:
-      MYSQL_ROOT_PASSWORD: mysql  # Replace with your actual password
+      MYSQL_ROOT_PASSWORD: mysql
       MYSQL_DATABASE: db
-      MYSQL_USER: exporter       # Add the exporter user directly here
-      MYSQL_PASSWORD: bochra     # Password for exporter user
+      MYSQL_USER: exporter
+      MYSQL_PASSWORD: bochra
     ports:
       - "3306:3306"
     volumes:
@@ -42,7 +41,7 @@ services:
     restart: unless-stopped
     container_name: mysql-exporter
     environment:
-      DATA_SOURCE_NAME: "exporter:bochra@tcp(mysql-container:3306)/"
+      DATA_SOURCE_NAME: "exporter:bochra@tcp(mysql-db:3306)/"
     ports:
       - "9104:9104"
     networks:
