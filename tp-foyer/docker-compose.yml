@@ -41,7 +41,7 @@ services:
     restart: unless-stopped
     container_name: mysql-exporter
     environment:
-      DATA_SOURCE_NAME: "exporter:bochra@tcp(mysql-db:3306)/"
+      DATA_SOURCE_NAME: "exporter:bochra@tcp(mysql-container:3306)/"
     ports:
       - "9104:9104"
     networks:
