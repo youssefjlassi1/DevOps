@@ -37,20 +37,20 @@ pipeline {
         }
         
         
-        //stage('SonarQube Analysis') {
-          //  steps {
-            //    script {
-              //      dir('tp-foyer') {
-                //        sh 'mvn sonar:sonar -Dsonar.projectKey=tp-foyer -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_TOKEN'
-                  //  }
-    //            }
-      //      }
-    //    }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    dir('tp-foyer') {
+                        sh 'mvn sonar:sonar -Dsonar.projectKey=tp-foyer -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_TOKEN'
+                    }
+               }
+            }
+        }
         
-      //      stage('Nexus') {
-            //    steps {
-              //      dir('tp-foyer') {  
-              //          nexusArtifactUploader artifacts: [
+           // stage('Nexus') {
+             //  steps {
+               //   dir('tp-foyer') {  
+                 //      nexusArtifactUploader artifacts: [
                //             [
                //                 artifactId: 'tp-foyer', 
                      //           classifier: '',
@@ -70,22 +70,22 @@ pipeline {
        //     }
     //    }
 
-     //   stage('build backend'){
-            //    steps{
-          //          sh 'cd tp-foyer && docker build -t adminaziz/tp-foyer-5.0.0 . '
-      //          }            
-     //   }
+        stage('build backend'){
+                steps{
+                   sh 'cd tp-foyer && docker build -t adminaziz/tp-foyer-5.0.0 . '
+               }            
+        }
 
-      //  stage('Push Docker Image') {
-       //     steps {
-         //       script {
-           //         withCredentials([usernamePassword(credentialsId: 'dockerhub-token', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-             //           sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
-               //         sh "docker push adminaziz/tp-foyer-5.0.0"
-                 //   }
-  //              }
-    //        }
-      //  }
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-token', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh "echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} --password-stdin"
+                        sh "docker push adminaziz/tp-foyer-5.0.0"
+                    }
+                }
+            }
+        }
 
         stage('Run docker compose') {
             steps {
