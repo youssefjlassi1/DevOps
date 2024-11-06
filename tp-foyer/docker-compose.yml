@@ -7,6 +7,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: mysql  # Replace with your actual password
       MYSQL_DATABASE: db
+      MYSQL_USER: exporter       # Add the exporter user directly here
+      MYSQL_PASSWORD: bochra     # Password for exporter user
     ports:
       - "3306:3306"
     volumes:
@@ -42,6 +44,8 @@ services:
       DATA_SOURCE_NAME: "exporter:bochra@tcp(mysql-db:3306)/"
     ports:
       - "9104:9104"
+    depends_on:
+      - mysql-db
     networks:
       - devops_default
 
