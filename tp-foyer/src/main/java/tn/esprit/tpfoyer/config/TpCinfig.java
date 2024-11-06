@@ -1,13 +1,12 @@
 package tn.esprit.tpfoyer.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Component
-public class TpCinfig {
-    private static final String GET = "GET";
+@Configuration
+public class TpCinfig { private static final String GET = "GET";
     private static final String POST = "POST";
     private static final String PUT = "PUT";
     private static final String DELETE = "DELETE";
