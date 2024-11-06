@@ -143,12 +143,50 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            echo 'Pipeline completed successfully!'
-        }
-        failure {
-            echo 'Pipeline failed. Please check the error logs above for more details.'
-        }
-    }
-}
+   post {
+           always {
+               echo 'Pipeline execution completed!'
+           }
+           success {
+               mail to: 'youssef.jlassi@esprit.tn',
+                   subject: "Succès du Build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                   body: """
+                   Bonjour Youssef Jlassi !
+
+                   Le build du projet '${env.JOB_NAME}' s'est terminé avec succès.
+
+                   Détails :
+
+   Numéro du Build : ${env.BUILD_NUMBER}
+   Statut du Build : SUCCESS
+   Durée du Build : ${currentBuild.durationString}
+
+                   Vous pouvez consulter la sortie complète de la console ici :
+                   ${env.BUILD_URL}console
+
+                   Cordialement,
+                   Jenkins CI/CD
+                   """
+           }
+           failure {
+               mail to: 'youssef.jlassi@esprit.tn',
+                   subject: "Échec du Build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                   body: """
+                    Bonjour Youssef Jlassi !,
+
+                   Le build du projet '${env.JOB_NAME}' s'est terminé avec le statut : FAILURE.
+
+                   Détails :
+
+   Numéro du Build : ${env.BUILD_NUMBER}
+   Statut du Build : FAILURE
+   Durée du Build : ${currentBuild.durationString}
+
+                   Vous pouvez consulter la sortie complète de la console ici :
+                   ${env.BUILD_URL}console
+
+                   Cordialement,
+                   Jenkins CI/CD
+                   """
+           }
+       }
