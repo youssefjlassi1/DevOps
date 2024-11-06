@@ -80,5 +80,18 @@ class BlocServiceImplTest {
         verify(blocRepository, times(1)).findById(blocId);
     }
 
+    @Test
+    void testRetrieve() {
+        Long blocId = 1L;
+        Bloc bloc = new Bloc(blocId, "Bloc A", 1000L, null, new HashSet<>());
+
+        when(blocRepository.findById(blocId)).thenReturn(Optional.of(bloc));
+
+        Bloc result = blocService.retrieveBloc(blocId);
+
+        assertNotNull(result);
+        assertEquals(blocId, result.getIdBloc());
+        verify(blocRepository, times(1)).findById(blocId);
+    }
 
 }
