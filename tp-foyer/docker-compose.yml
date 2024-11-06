@@ -36,10 +36,10 @@ services:
     networks:
       - devops_default
 
-  mysql-exporter:
+  mysql-exporter-v0121:
     image: prom/mysqld-exporter:v0.12.1
+    container_name: mysql-exporter-v0121
     restart: unless-stopped
-    container_name: mysql-exporter
     environment:
       DATA_SOURCE_NAME: "exporter:bochra@tcp(mysql-db:3306)/"
     ports:
